@@ -24,6 +24,8 @@ tags:
     description: Endpoints related to scanning blockchain messages
   - name: Scan transaction
     description: Endpoints related to scanning blockchain transactions
+security:
+  - ApiKeyAuth: []
 
 paths:
   /ethereum/v0/mainnet/scan/transaction:
@@ -42,6 +44,8 @@ paths:
         | Polygon Mainnet | https://api.blowfish.xyz/polygon/v0/mainnet/scan/transaction |
         Note:  The Ethereum and Polygon endpoints are equivalent when it comes to functionality as well as request and response formats.
         Note 2: If you are using a free, self-service API key from our Developer Portal, be sure to add the `free` subdomain (e.g., `https://free.api.blowfish.xyz`) to the above endpoints.
+      security:
+        - ApiKeyAuth: []
       parameters:
         - name: language
           in: query
@@ -458,6 +462,8 @@ paths:
         | Polygon Mainnet | https://api.blowfish.xyz/polygon/v0/mainnet/scan/message |
         Note:  The Ethereum and Polygon endpoints are equivalent when it comes to functionality as well as request and response formats.
         Note 2: If you are using a free, self-service API key from our Developer Portal, be sure to add the `free` subdomain (e.g., `https://free.api.blowfish.xyz`) to the above endpoints.
+      security:
+        - ApiKeyAuth: []
       parameters:
         - name: language
           in: query
@@ -921,7 +927,8 @@ paths:
         | Testnet | https://api.blowfish.xyz/solana/v0/testnet/scan/transactions |
         | Devnet | https://api.blowfish.xyz/solana/v0/devnet/scan/transactions |
         Note: If you are using a free, self-service API key from our Developer Portal, be sure to add the `free` subdomain (e.g., `https://free.api.blowfish.xyz`) to the above endpoints.
-
+      security:
+        - ApiKeyAuth: []
       parameters:
         - name: language
           in: query
@@ -1370,6 +1377,8 @@ paths:
         This is an advanced feature for integrators who want granular control over blocking domains. By default, the API uses internal list priority heuristics designed for most use cases. The Blowfish team continuously monitors the quality of the underlying blocklists and removes incorrect entries.
 
         Blowfish can also ingest custom blocklists and allowlists. If you have a custom list, you can reach out to the Blowfish team and provide a publicly available URL with the domains in a .txt format.
+      security:
+        - ApiKeyAuth: []
       parameters:
         - name: X-Api-Key
           in: header
@@ -1475,6 +1484,8 @@ paths:
       operationId: scan-domain
       description: |
         This endpoint allows customers to analyze dApp domains to determine if they are safe for users to interact with
+      security:
+        - ApiKeyAuth: []
       parameters:
         - name: X-Api-Key
           in: header
@@ -1631,6 +1642,11 @@ paths:
                 $ref: "#/components/schemas/InternalServerError"
 
 components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key
   schemas:
     Unauthorized:
       type: object

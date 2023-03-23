@@ -3,6 +3,13 @@ info:
   title: API reference
   version: "2022-06-01"
   description: "The Blowfish API reference specification"
+  contact:
+    name: Blowfish API Support
+    email: contact@blowfish.xyz
+    url: https://blowfish.xyz
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
 servers:
   - url: https://free.api.blowfish.xyz
     description: API server for clients on the free plan
@@ -754,6 +761,7 @@ paths:
                           humanReadableError:
                             type: string
                             description: Human readable & translated string that can be directly exposed to end-users
+                            example: Unsupported order type, unable to simulate message
               examples:
                 erc20_permit:
                   summary: ERC20 Permit
@@ -947,9 +955,11 @@ paths:
                   type: array
                   items:
                     type: string
+                    example: "GfoPPvWL5eSJssAoemjqUpE9nMVt5kWTNznPz1F1CKi5kcBY8tDBgLzpbdBnTQjHJgyutdXEHmkkmE3iM3y94LE5s3zZ8wq2sjMkgjpddAnTwY1TrGSk6yZNykT2Un1PKqwo2XMXBa5FR3BpKStBV4krbiFzT9UySLSysTBzw31caBCuvcsetdE7yYWXGXEGbRiCf3BCWFkrooKAHrzW7bSHmGdUuB2sip9wEcb7r3SjhzkkAK2tySVkrbvVB5c11oF6zDYVys7wpaGbjn2DsVPYo9gbGVQXHi4qgCBXTzCT8v8pZV9gh4FeMRWw5yzfuWtxw44aQ6EKz55cTUhBAVMUCEZQUrfJbx1NzEYod41n7GFHzEXTZyPCo5CnGmX8u2UhuLhx2n8ZNg6Mj1dH6PGRQnKtxAzwicfPJ9KahGjoNLNcki9gfdxURy56DY3YH3DDviLrKKjiEoTmZs8UiaSBwRjsLA5dhJ6G6LyC9bjertH1cpcDWSQhRfwBXHAvHNirLX8927WcCHoTAUWXKqB34YJu4cLPwTn5kUr4FMQgQBhvyaMDDzrH76bwSFS4oRmMqXtscyWXbdXJC1k8iiRHftqmZhg3bP3UydcXKBUQJi15A64kjpkGY7ChxdcuwgLzKnVNJGG897nUPsVmsVfZNwiVqVZ6QKv1z7yv4EGvbkhWStx9NFvv8JkHjUhL4vNo8o7TPNib21WeFLgmiAu7nrn25kkJLZ3XE6ZVceUEbywJCMdwMomPx2maxauRehuxSorkE3ngcj7mC88HEgPTBQiP2JRJxcFvQp1CsfErCs3F3uG79kEKJLzNoFbCL58s6JsH3rE69wcb5e47JztFmrmGp4p3mb2jYoUfj6AfCctky9MnB6jWTdyg2o7zUcr5f35Qwahgcsce95RgH9mcWKFLqu49RxpFUgnHiNaDG67YEGdDgu2YABYxv6tv7PEtCJqZH4VVbpu9TRQCCXkQv4Xj7j6ALmhbNoJBEHJHqTGhiNQvV5aibesnGG62epoPz36uNJZrt6GV53AeLig22HVtBRr1NE2wB6h9Ax6VX7KKrekKBMzUxeAjWbGERkCWuXdRjTrpDG3bbDCDgep8k9ZnDDQtNqSKJbbxZ1VJvMKgcgty5P4n4YTXTSFNQ9kE8VCikb9tpN6iRnUwD9GFRQfiR76QNZs5hU2hn8asGYFnRcEgjZV9cSwC6foKrV47uq9X2dPWZg56TpNhPb85fzbkN13LdFHcua3MTvWmSD4LZAFMF8QWqpb7b2YZZpc1sQvYc5gN856JwehDybMsB2EFepiBFQXTxwB2c9xbHjEf3RcWwe3LZiD8vvWLfGF2t7PzwDKbEREpsX8piN76GkCGiRjgkdehiXaLzjQ5nW3Fi8F2HjALRRjHJxfNQq4vH4B6Nwp7rruzqdY1j6cm3QagrgeXCmfSmRV6kaCMRRQYbVW6Ju4rMbLTWa7FAWCmR2rvmevmi1PmV8zhApVFbV9VHd2hTazrddBWXRAmTRBZEjyRqSkr3y45ecph1ae87Pi3quaEEhjFP9oSWTUs3ufHCW2XjLj"
                   description: Base58 or Base64 encoded Solana transactions to scan
                 userAccount:
                   type: string
+                  example: "5ufzDEwP2jKrvx78inuWNPrXRmR9AcXySqc2B3CRqR3G"
                   description: Base58-encoded account of signer of transactions
                 metadata:
                   $ref: "#/components/schemas/RequestMetadata"
@@ -974,6 +984,7 @@ paths:
                     properties:
                       isRecentBlockhashExpired:
                         type: boolean
+                        example: false
                         description: Whether all of the transaction's recentBlockhashes have expired
                       expectedStateChanges:
                         type: array
@@ -1012,6 +1023,7 @@ paths:
                           kind:
                             type: string
                             description: A unique representation of the error kind. Currently maps to the screaming case of the SystemError enum values, TokenError and TransactionError enum values.
+                            example: INSUFFICIENT_FUNDS
                             enum:
                               - AN_ACCOUNT_WITH_THE_SAME_ADDRESS_ALREADY_EXISTS
                               - ACCOUNT_DOES_NOT_HAVE_ENOUGH_SOL_TO_PERFORM_THE_OPERATION
@@ -1076,6 +1088,7 @@ paths:
                           humanReadableError:
                             type: string
                             description: Human readable version of the error
+                            example: You don't have enough tokens for this transaction
                         description: A nullable error object which includes the parsed simulation error encountered (if any)
                         nullable: true
                       raw:
@@ -1085,6 +1098,7 @@ paths:
                           err:
                             type: string
                             description: Program instruction error causing the failure
+                            example: BlockhashNotFound
                             nullable: true
                           logs:
                             type: array
@@ -1129,14 +1143,26 @@ paths:
                             properties:
                               programId:
                                 type: string
+                                description: the program that generated the return data, as base-58 encoded Pubkey
+                                example: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
                               data:
-                                type: string
+                                type: array
+                                description: The return data itself, as base-64 encoded binary data and it's encoding as the second element
+                                items:
+                                  type: string
+                                  example: "AQAAANVgbnOWDT3H5I2/oye32/palPUEeT1S5fbKj2WqgpTuAQAAAAAAAAAAAQEAAADVYG5zlg09x+SNv6Mnt9v6WpT1BHk9UuX2yo9lqoKU7g=="
+                                example:
+                                  [
+                                    "AQAAANVgbnOWDT3H5I2/oye32/palPUEeT1S5fbKj2WqgpTuAQAAAAAAAAAAAQEAAADVYG5zlg09x+SNv6Mnt9v6WpT1BHk9UuX2yo9lqoKU7g==",
+                                    "base64",
+                                  ]
                       status:
                         type: string
                         enum:
                           - CHECKS_PASSED
                           - SUSPECTED_MALICIOUS
                           - KNOWN_MALICIOUS
+                        example: CHECKS_PASSED
                         deprecated: true
                         description: An enum value describing whether a program in the proposed transactions was either a known or suspected malicious program. Deprecated. Use `action` instead.
               examples:
@@ -1375,6 +1401,7 @@ paths:
                       - BLOWFISH
                       - METAMASK
                       - DEFILLAMA
+                    example: BLOWFISH
                   description: Override domain blocking if domain is present on one of these lists
                 priorityBlockLists:
                   type: array
@@ -1386,6 +1413,7 @@ paths:
                       - SOLFARE
                       - PHISHFORT
                       - SCAMSNIFFER
+                    example: BLOWFISH
                   description: Always block domain if it present on one of these lists
       responses:
         "200":
@@ -1624,6 +1652,7 @@ components:
         error:
           type: string
           enum: ["Internal Server Error"]
+          example: "Internal Server Error"
     ActionEnum:
       type: string
       enum:
@@ -1636,6 +1665,7 @@ components:
           - `BLOCK`: Show the user a block screen instead of the signing UI since this is highly likely to be a malicious transaction. We suggest still having a greyed out link allowing the user to proceed if they really think they know better
           - `WARN`: Show the user the supplied warnings.
           - `NONE`: Show the signing UI without modification.
+      example: WARN
     Warning:
       type: array
       description: An array of warnings generated from scanning the transactions. All these warnings won't be returned in a single response (some are mutually exclusive) but it is advisable that your UI can display multiple warnings. Warnings are returned sorted by severity, so if you can only show a user one warning, show them the one at the 0th index.
@@ -1648,6 +1678,7 @@ components:
             enum:
               - CRITICAL
               - WARNING
+            example: WARNING
           kind:
             type: string
             description: Warning kind. Can be used to override specific warnings with your own custom versions. We reserve the right to add new warnings as the need arises, so your UI should likewise defer to the supplied message if the kind isn't recognized by your code.
@@ -1675,6 +1706,7 @@ components:
               - POISONED_ADDRESS
               - APPROVAL_TO_E_O_A
               - COPY_CAT_DOMAIN
+            example: SUSPECTED_MALICIOUS
           message:
             type: string
             description: human-readable message to present to the end-user
@@ -1683,17 +1715,21 @@ components:
       description: Expected response content type
       type: string
       default: "application/json"
+      example: "application/json"
     ApiVersionHeader:
       type: string
       description: API version like 2022-06-01
       default: "2022-06-01"
+      example: "2022-06-01"
     ApiKeyHeader:
       description: API key
       type: string
       default: 4daa1e3b-87e6-40b2-8883-758feb6a8e46
+      example: e79e18b4-8ffa-4fab-9e2e-f24057644f93
     Languages:
       type: string
       default: en
+      example: en
       description: Specify the desired language for the returned warning messages and human-readable simulation results. If unknown, defaults to English.
       enum:
         - am
@@ -1809,6 +1845,7 @@ components:
         source:
           type: string
           enum: ["Simplehash", "Defillama", "Coingecko"]
+          example: Coingecko
         last_updated_at:
           type: number
           example: 1679331222
@@ -1820,6 +1857,7 @@ components:
       type: string
       enum:
         [non_fungible, fungible_asset, fungible, non_fungible_edition, unknown]
+      example: fungible
     EvmUserAccount:
       type: string
       description: A hex-representation of the user account who is being asked to sign the supplied transaction. In most cases this will be the same as the from property in the txObject
@@ -1834,6 +1872,7 @@ components:
         kind:
           type: string
           enum: [ACCOUNT]
+          example: ACCOUNT
           description: The type of address
     EvmDecimals:
       type: integer
@@ -1850,15 +1889,18 @@ components:
         rawImageUrl:
           type: string
           format: uri
+          example: "https://d1ts37qlq4uz4s.cloudfront.net/evm__evm%3A%3Aethereum__evm%3A%3Aethereum%3A%3Amainnet__0x6b175474e89094c44da98b954eedeac495271d0f.png"
       description: Metadata associated with the NFT
     EvmErc721TokenId:
       type: string
       nullable: true
       description: The ID of the ERC721 token. It can temporarily be null in some edge cases where we are unable to parse it
+      example: "100"
     EvmErc1155TokenId:
       type: string
       nullable: true
       description: The ID of the ERC1155 token
+      example: "100"
     EvmAmount:
       type: object
       properties:
@@ -1906,11 +1948,13 @@ components:
               - KLEROS_TOKENS
               - POLYGON_POPULAR_TOKENS
               - EVM_NATIVE
+            example: COINGECKO
           description: The trusted token lists on which this asset is listed
         imageUrl:
           type: string
           description: The URL of the asset's image
           nullable: true
+          example: "https://d1ts37qlq4uz4s.cloudfront.net/evm__evm%3A%3Aethereum__evm%3A%3Aethereum%3A%3Amainnet__0x6b175474e89094c44da98b954eedeac495271d0f.png"
         price:
           description: $-value price of the asset. Floor price of the collection if asset is an NFT.
           $ref: "#/components/schemas/AssetPrice"
@@ -1920,6 +1964,7 @@ components:
         kind:
           type: string
           enum: [SIGN_TYPED_DATA]
+          example: SIGN_TYPED_DATA
         data:
           type: object
           properties:
@@ -1933,22 +1978,29 @@ components:
                     properties:
                       name:
                         type: string
+                        example: Seaport
                       type:
                         type: string
+                        example: string
               additionalProperties: true
             primaryType:
               type: string
+              example: OrderComponents
             domain:
               type: object
               properties:
                 name:
                   type: string
+                  example: Seaport
                 version:
                   type: string
+                  example: "1.4"
                 chainId:
                   type: string
+                  example: "1"
                 verifyingContract:
                   type: string
+                  example: "0x00000000000001ad428e4906aE43D8F9852d0dD6"
             message:
               type: object
               additionalProperties: true
@@ -1958,9 +2010,11 @@ components:
         kind:
           type: string
           enum: [SIGN_MESSAGE]
+          example: SIGN_MESSAGE
         rawMessage:
           type: string
           description: The hex encoded eth_sign message that the dapp is proposing the user to sign.
+          example: "0x40ac14ef28d35fb4540e0cd0950123b378224d3585ec887c26f7a510da544552"
       required:
         - kind
         - rawMessage
@@ -1970,6 +2024,7 @@ components:
         kind:
           type: string
           enum: [INVALID_TRANSACTION]
+          example: INVALID_TRANSACTION
         humanReadableError:
           type: string
           description: Human readable explanation of the error
@@ -1980,21 +2035,22 @@ components:
         kind:
           type: string
           enum: [SIMULATION_FAILED]
+          example: SIMULATION_FAILED
         humanReadableError:
           type: string
           description: Human readable explanation of the error
-        parsedErrorMessage:
-          type: string
-          description: Parsed error message that lead to the simulation failure
+          example: Transaction simulation failed
     EvmUnknownError:
       type: object
       properties:
         kind:
           type: string
           enum: [UNKNOWN_ERROR]
+          example: UNKNOWN_ERROR
         humanReadableError:
           type: string
           description: Human readable explanation of the error
+          example: Unable to simulate transaction
     EvmStateChangeErc20Permit:
       type: object
       description: ERC20 token permit message
@@ -2003,6 +2059,7 @@ components:
           type: string
           description: What kind of state change this object is
           enum: [ERC20_PERMIT]
+          example: ERC20_PERMIT
         data:
           type: object
           properties:
@@ -2025,9 +2082,11 @@ components:
             nonce:
               type: string
               description: Stringified nonce number
+              example: "0"
             deadline:
               type: number
               description: Unix timestamp when this permit will expire
+              example: 1667556263
             name:
               $ref: "#/components/schemas/EvmName"
               deprecated: true
@@ -2047,6 +2106,7 @@ components:
           type: string
           description: What kind of state change this object is
           enum: [ERC20_TRANSFER]
+          example: ERC20_TRANSFER
         data:
           type: object
           properties:
@@ -2077,6 +2137,7 @@ components:
           type: string
           description: What kind of state change this object is
           enum: [ERC20_APPROVAL]
+          example: ERC20_APPROVAL
         data:
           type: object
           properties:
@@ -2113,6 +2174,7 @@ components:
           type: string
           description: What kind of state change this object is
           enum: [NATIVE_ASSET_TRANSFER]
+          example: NATIVE_ASSET_TRANSFER
         data:
           type: object
           properties:
@@ -2135,6 +2197,7 @@ components:
           type: string
           description: What kind of state change this object is
           enum: [ERC721_TRANSFER]
+          example: ERC721_TRANSFER
         data:
           type: object
           properties:
@@ -2162,6 +2225,7 @@ components:
           type: string
           description: What kind of state change this object is
           enum: [ERC721_APPROVAL]
+          example: ERC721_APPROVAL
         data:
           type: object
           properties:
@@ -2193,6 +2257,7 @@ components:
           type: string
           description: What kind of state change this object is
           enum: [ERC721_APPROVAL_FOR_ALL]
+          example: ERC721_APPROVAL_FOR_ALL
         data:
           type: object
           properties:
@@ -2220,6 +2285,7 @@ components:
           type: string
           description: What kind of state change this object is
           enum: [ERC1155_TRANSFER]
+          example: ERC1155_TRANSFER
         data:
           type: object
           properties:
@@ -2243,6 +2309,7 @@ components:
           type: string
           description: What kind of state change this object is
           enum: [ERC1155_APPROVAL_FOR_ALL]
+          example: ERC1155_APPROVAL_FOR_ALL
         data:
           type: object
           properties:
@@ -2268,28 +2335,40 @@ components:
           type: string
           description: What kind of state change this object is
           enum: [SOL_TRANSFER]
+          example: SOL_TRANSFER
         data:
           type: object
           description: Machine-parseable data relevant to this state change kind
           properties:
             symbol:
               type: string
+              description: Symbol of the Solana native token
+              example: SOL
             name:
               type: string
+              description: Name of the Solana native token
+              example: Solana Native Token
             decimals:
               type: integer
+              description: Decimals of the Solana native token
+              example: 9
             diff:
-              type: object
-              properties:
-                sign:
-                  type: string
-                  description: Whether the amount is positive or negative
-                  enum: [PLUS, MINUS]
-                digits:
-                  type: integer
+              $ref: "#/components/schemas/Diff"
             assetPrice:
               description: The $-value price of the asset
               $ref: "#/components/schemas/AssetPrice"
+    Diff:
+      type: object
+      properties:
+        sign:
+          type: string
+          description: Whether the amount is positive or negative
+          enum: [PLUS, MINUS]
+          example: PLUS
+        digits:
+          type: integer
+          description: The unsigned quantity
+          example: 500000
     SolanaStageChangeSplTransfer:
       type: object
       description: SPL token transfer
@@ -2298,27 +2377,28 @@ components:
           type: string
           description: What kind of state change this object is
           enum: [SPL_TRANSFER]
+          example: SPL_TRANSFER
         data:
           type: object
           properties:
             symbol:
               type: string
+              description: SPL token symbol
+              example: USDC
             name:
               type: string
+              description: SPL token name
+              example: USD Coin
             mint:
               type: string
-              description: The mint program address
+              description: The SPL token mint program address
+              example: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
             decimals:
               type: integer
+              description: SPL token decimals
+              example: 13
             diff:
-              type: object
-              properties:
-                sign:
-                  type: string
-                  description: Whether the amount is positive or negative
-                  enum: [PLUS, MINUS]
-                digits:
-                  type: integer
+              $ref: "#/components/schemas/Diff"
             assetPrice:
               description: The $-value price of the asset
               $ref: "#/components/schemas/AssetPrice"
@@ -2330,33 +2410,36 @@ components:
           type: string
           description: What kind of state change this object is
           enum: [SPL_APPROVAL]
+          example: SPL_APPROVAL
         data:
           type: object
           properties:
             delegate:
               type: string
               description: Who will be able to transfer the user's tokens on their behalf
+              example: 3kQJyZKC4tdQy3nqCqFiLDT2V7dzG65vSKtkUGCht5L3
             mint:
               type: string
-              description: The mint program address
+              description: The SPL token mint program address
+              example: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
             symbol:
               type: string
+              description: SPL token symbol
+              example: USDC
             name:
               type: string
+              description: SPL token name
+              example: USD Coin
             decimals:
               type: integer
+              description: SPL token decimals
+              example: 13
             diff:
-              type: object
-              properties:
-                sign:
-                  type: string
-                  description: Whether the amount is positive or negative
-                  enum: [PLUS, MINUS]
-                digits:
-                  type: integer
+              $ref: "#/components/schemas/Diff"
             supply:
               type: integer
               description: Total supply of the token
+              example: 1000000000000000000
             metaplexTokenStandard:
               description: The Metaplex token standard for this asset if any
               $ref: "#/components/schemas/MetaplexTokenStandard"
@@ -2369,13 +2452,16 @@ components:
       properties:
         kind:
           type: string
+          description: What kind of state change this object is
           enum: [SOL_STAKE_AUTHORITY_CHANGE]
+          example: SOL_STAKE_AUTHORITY_CHANGE
         data:
           type: object
           properties:
             stakeAccount:
               type: string
               description: The stake account address
+              example: 2AG3beWwvyvEMLfwJcQS9DKMV62C3UWTTf8d7gp2vFQS
             currAuthorities:
               type: object
               description: Current authorities with control over the staking account
@@ -2383,9 +2469,11 @@ components:
                 staker:
                   type: string
                   description: Authority who can make staking changes
+                  example: J58MrVr9qJPzJJS8RPQUDfaFirN3PiVHXU48zr95FY48
                 withdrawer:
                   type: string
                   description: Authority who can withdraw the funds from the staking account
+                  example: J58MrVr9qJPzJJS8RPQUDfaFirN3PiVHXU48zr95FY48
             futureAuthorities:
               type: object
               description: Future authorities who will have control over the staking account
@@ -2393,15 +2481,24 @@ components:
                 staker:
                   type: string
                   description: Authority who can make staking changes
+                  example: EpochxXNkmM2akxBTuCEizW1oWyzgrPZ1CVZ3GpD7Egm
                 withdrawer:
                   type: string
                   description: Authority who can withdraw the funds from the staking account
+                  example: EpochxXNkmM2akxBTuCEizW1oWyzgrPZ1CVZ3GpD7Egm
             symbol:
               type: string
+              description: Symbol of the Solana native token
+              example: SOL
             name:
               type: string
+              description: Name of the Solana native token
+              example: Solana Native Token
             decimals:
               type: integer
+              description: Decimals of the Solana native token
+              example: 9
             solStaked:
               type: integer
               description: Amount of SOL staked by this account
+              example: 1000000000000

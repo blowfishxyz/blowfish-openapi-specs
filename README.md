@@ -1,12 +1,12 @@
 <img src="blowfish.png" alt="Blowfish" width="400"/>
 
-# blowfish-openapi-specs
+# blowfish-openapi-specs [DEPRECATED]
 
-This is a public repository containing all [OpenAPI](https://www.openapis.org/) specs for the various versions of the Blowfish API.
+Use https://api.blowfish.xyz/openapi/ instead.
 
 ## Comparing versions
 
-You can use these specifications to generate a diff of exactly what changed between the version you're currently using and any other version you might want to update to. To do so, you could use the following command:
+You can use these specifications to generate a diff of exactly what changed between the version you're currently using and any other version you might want to update to. To do so, you could use the following command after downloading the spec's locally:
 
 ```
 diff ./v20220601.yaml ./v20230308.yaml
